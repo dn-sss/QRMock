@@ -21,6 +21,7 @@
         crossorigin="anonymous"></script>
     <script src="./js/script.js"></script>
     <script type="text/javascript" src="./js/jsQR.js"></script>
+    
 
     <div class="container align-items-center min-vh-100 flex-container p-0"
         style="height: 100%; overflow: auto;flex-direction: column;">
@@ -43,6 +44,13 @@
                                 <div class="m-5"></div>
                                 <div class="my-label-large">
                                     Scan QR Code to register your devices to AITRIOS project
+                                </div>
+                                <div class="m-3"></div>
+                                <div id="divQrcodeForMobile" style="display: none;">
+                                    <div class="my-label">
+                                        Open with your mobile device
+                                    </div>
+                                    <img src="./image/QRCode.PNG" class="aitrios-logo" >
                                 </div>
                                 <div class="m-3"></div>
                                 <button id="btnOpenCamera" type="button" class="btn-aitrios">Next</button>
@@ -98,7 +106,12 @@
                                     <label for="divDeviceId" class="my-label">Device ID:</label>
                                     <div class="my-label-data" id="divDeviceId">123</div>
                                 </div>
-                    
+
+                                <div class="mb-2">
+                                    <label for="divDeviceName" class="my-label">Device Name:</label>
+                                    <input type="text" class="form-control my-label-data"  id="divDeviceName" placeholder="Device ID will be used if not specified">
+                                </div>
+
                                 <div class="mb-2">
                                     <label for="listProject" class="my-label">Project:</label>
                                     <select class="form-select my-label-data is-invalid" id="listProject" required>
@@ -294,14 +307,14 @@
                 <div id="toastDeviceIdConfirm" class="toast bg-black" role="alert" aria-live="assertive"
                     aria-atomic="true" data-bs-autohide="false">
                     <div class="toast-header bg-black text-white">
-                        <strong class="me-auto">Register this device</strong>
+                        <strong class="me-auto my-label-large">Register this device</strong>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"
                             aria-label="Close"></button>
                     </div>
                     <div class="toast-body">
-                        <div id="divToastDeviceId"></div>
-                        <div class="divBtn-Center">
-                            <button id="btnConfirmRegisterDevice" type="button" class="btn-aitrios-sm">Register</button>
+                        <div class="my-label-data-large" id="divToastDeviceId"></div>
+                        <div class="divBtn-Center mt-5">
+                            <button id="btnConfirmRegisterDevice" type="button" class="btn-aitrios" width="100%">Register</button>
                         </div>
                     </div>
                 </div>

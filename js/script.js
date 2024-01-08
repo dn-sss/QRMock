@@ -25,6 +25,8 @@ const lineColor = "#FF3B58";
 
 let toastDeviceIdConfirm = null;
 
+const isHover  = window.matchMedia("(any-hover:hover)").matches;
+
 document.addEventListener("DOMContentLoaded", function () {
     step = document.getElementsByClassName("step");
     prevBtn = document.getElementById("prev-btn");
@@ -150,6 +152,20 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    const divQrcodeForMobile = document.getElementById("divQrcodeForMobile"); 
+
+    if (divQrcodeForMobile != null)
+    {
+        if (isHover == true)
+        {
+            divQrcodeForMobile.style.display = 'block';
+        }
+        else
+        {
+            divQrcodeForMobile.style.display = 'none';
+        }
+    
+    }
 
     stepConfig(0, -1);
 });
@@ -171,6 +187,7 @@ function clickBtnConfirmRegisterDevice(event)
     console.log(`clickBtnConfirmRegisterDevice`);
     if (toastDeviceIdConfirm.isShown())
     {
+        divDeviceId.innerText = divToastDeviceId.innerHtml;
         divDeviceId.innerHtml = divToastDeviceId.innerHtml;
         toastDeviceIdConfirm.hide();
     }
@@ -292,7 +309,7 @@ function scanCode(ctx, canvas) {
     var code = jsQR(imageData.data, imageData.width, imageData.height, {
         inversionAttempts: "dontInvert",
     });
-    if (code) {
+    if (code && code.data.length > 0) {
         drawBBox(ctx, code.location);
         checkDetectedCode(code.data);
         var endTime = new Date();
@@ -304,17 +321,17 @@ function scanCode(ctx, canvas) {
 function drawVideoStream() {
     if (elementVideo.readyState === elementVideo.HAVE_ENOUGH_DATA) {
 
-        var ctxMask = canvasMask.getContext("2d", { willReadFrequently: true });
-        ctxMask.globalAlpha = 0.5;
-        ctxMask.beginPath();
+        // var ctxMask = canvasMask.getContext("2d", { willReadFrequently: true });
+        // ctxMask.globalAlpha = 0.5;
+        // ctxMask.beginPath();
 
-        //ctxMask.clearRect(0,0, canvasMask.width, canvasMask.heigh);
-        ctxMask.rect(0,0, canvasMask.width, canvasMask.heigh)
-        //ctxMask.fillStyle = 'rgba(255, 0, 0, 0.5)';
-        ctxMask.fill();
+        // //ctxMask.clearRect(0,0, canvasMask.width, canvasMask.heigh);
+        // ctxMask.rect(0,0, canvasMask.width, canvasMask.heigh)
+        // //ctxMask.fillStyle = 'rgba(255, 0, 0, 0.5)';
+        // ctxMask.fill();
 
-        var w = canvasMask.clientWidth / 2;
-        var h = canvasMask.clientHeigh / 2;
+        // var w = canvasMask.clientWidth / 2;
+        // var h = canvasMask.clientHeigh / 2;
 
         //ctxMask.clearRect(canvasMask.width / 2 - w , canvasMask.height / 2 - h, w, h);
 

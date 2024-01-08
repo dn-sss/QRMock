@@ -17,22 +17,22 @@
 
 @media screen and (min-width: 375px) {
     :root {
-        --font-size: 18px;
+        --font-size: 16px;
         --font-size-icon: 1.2rem;
 
-        --font-size-large: 20px;
+        --font-size-large: 18px;
         --font-size-large-weight: 700;
-        --font-size-large-line-height: 32px;
+        --font-size-large-line-height: 26px;
 
         --font-size-title: 1.5rem;
 
         --font-size-label: 16px;
         --font-size-label-weight: 700;
-        --font-size-label-line-height: 25.6px;
+        --font-size-label-line-height: 24px;
 
         --font-size-label-data: 14px;
         --font-size-label-data-weight: 400;
-        --font-size-label-data-line-height: 22.4px;
+        --font-size-label-data-line-height: 22px;
     }
 }
 
@@ -95,6 +95,9 @@
         --font-size-label-data-weight: 400;
         --font-size-label-data-line-height: 22.4px;
     }
+}
+
+@media (any-hover:hover) {
 }
 
 html {
@@ -282,6 +285,11 @@ body {
     line-height: var( --font-size-label-data-line-height);
 }
 
+.my-label-data-large {
+    font-size: var(--font-size-large);
+    line-height: var( --font-size-label-data-line-height);
+}
+
 .divProductImage {
     flex: none;
     height:25%;
@@ -308,3 +316,10 @@ body {
 {
     background-color: var(--color-blue) !important;
 }
+
+::placeholder {
+    color: var(--color-gray-light) !important;
+  }
+  ::-ms-input-placeholder {
+    color: var(--color-gray-light) !important;
+  }
