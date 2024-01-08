@@ -28,6 +28,9 @@ let toastDeviceIdConfirm = null;
 const isHover  = window.matchMedia("(any-hover:hover)").matches;
 
 document.addEventListener("DOMContentLoaded", function () {
+    const divTest = document.getElementsByClassName("divTest");
+
+    divTest.innnerText = `w ${window.innnerWidth} h ${window.innnerHeight}`
     step = document.getElementsByClassName("step");
     prevBtn = document.getElementById("prev-btn");
     nextBtn = document.getElementById("next-btn");
