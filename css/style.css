@@ -1,0 +1,310 @@
+@import url('https://fonts.cdnfonts.com/css/sst');
+
+@font-face {
+    font-family: 'SST';
+    src: url(assets/fonts/SSTJapaneseW55-Regular.woff2) format("woff2"), url(assets/fonts/SSTJapaneseW55-Regular.woff) format("woff")
+}
+
+:root {
+    --color-blue: #3E455C;
+    --color-blue-light: #4162CC;
+    --color-red: #ff0000;
+    --color-gray-light: #BBBDBF;
+    /* --color-gray-dark: #3E445B; */
+    --color-white: #FFFFFF;
+    --aitrios-font: 'SST Japanese Pro';
+}
+
+@media screen and (min-width: 375px) {
+    :root {
+        --font-size: 18px;
+        --font-size-icon: 1.2rem;
+
+        --font-size-large: 20px;
+        --font-size-large-weight: 700;
+        --font-size-large-line-height: 32px;
+
+        --font-size-title: 1.5rem;
+
+        --font-size-label: 16px;
+        --font-size-label-weight: 700;
+        --font-size-label-line-height: 25.6px;
+
+        --font-size-label-data: 14px;
+        --font-size-label-data-weight: 400;
+        --font-size-label-data-line-height: 22.4px;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    :root {
+        --font-size: 18px;
+        --font-size-icon: 1.2rem;
+
+        --font-size-large: 20px;
+        --font-size-large-weight: 700;
+        --font-size-large-line-height: 32px;
+
+        --font-size-title: 1.5rem;
+
+        --font-size-label: 16px;
+        --font-size-label-weight: 700;
+        --font-size-label-line-height: 25.6px;
+
+        --font-size-label-data: 14px;
+        --font-size-label-data-weight: 400;
+        --font-size-label-data-line-height: 22.4px;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    :root {
+        --font-size: 18px;
+        --font-size-icon: 1.2rem;
+        --font-size-large: 20px;
+        --font-size-large-weight: 700;
+        --font-size-large-line-height: 32px;
+
+        --font-size-title: 1.5rem;
+
+        --font-size-label: 16px;
+        --font-size-label-weight: 700;
+        --font-size-label-line-height: 25.6px;
+
+        --font-size-label-data: 14px;
+        --font-size-label-data-weight: 400;
+        --font-size-label-data-line-height: 22.4px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    :root {
+        --font-size: 18px;
+        --font-size-icon: 1.2rem;
+        --font-size-large: 20px;
+        --font-size-large-weight: 700;
+        --font-size-large-line-height: 32px;
+
+        --font-size-title: 1.5rem;
+
+        --font-size-label: 16px;
+        --font-size-label-weight: 700;
+        --font-size-label-line-height: 25.6px;
+
+        --font-size-label-data: 14px;
+        --font-size-label-data-weight: 400;
+        --font-size-label-data-line-height: 22.4px;
+    }
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background: #000000;
+    font-family: 'SST', sans-serif;
+    color: #ffffff !important;
+}
+
+.aitrios-logo {
+    width :40%;
+    max-width : 40%;
+}
+
+.btn-aitrios,
+.btn-aitrios-sm,
+.btn-aitrios-icon {
+    color: var(--color-white) !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 8px !important;
+    position: relative !important;
+    border-width: 1px !important;
+    border-color: var(--color-blue) !important;
+    font-family: var(--aitrios-font) !important;
+    mix-blend-mode: normal !important;
+    /* box-shadow: 0px 0px 2px 2px var(--color-blue); */
+}
+
+.btn-aitrios {
+    border-radius: 8px !important;
+    background-color: var(--color-blue) !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: 160% !important;
+    font-size: var(--font-size) !important;
+    padding: 8px 16px !important;
+    min-width: 10rem;
+}
+
+.btn-aitrios-sm {
+    border-radius: 4px !important;
+    background-color: var(--color-blue) !important;
+    padding: 4px 8px !important;
+}
+
+.btn-aitrios-icon {
+    padding: 2px 4px !important;
+    color: var(--color-blue) !important;
+    background-color: var(--color-gray-light) !important;
+}
+
+.btn-aitrios-icon.active, .btn-aitrios-icon:hover {
+    color: var(--color-white) !important;
+    background-color: var(--color-blue) !important;
+    padding: 4px 8px !important;
+}
+
+/* .row {
+    border-color: red;
+    border-style: dashed;
+} */
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    /* align-items: stretch; */
+}
+
+.my-card {
+    flex-grow: 1;
+}
+
+.my-card-header,
+.my-card-footer,
+.my-card-footer-thick {
+    background-color: #000;
+    color: #ffffff !important;
+    max-height: 10vh !important;
+    flex: none;
+    width: 100% !important;
+    margin: auto;
+}
+
+.my-card-header {
+    height: 36px;
+    padding: 0;
+}
+
+.my-card-body,
+.my-card-body-camera {
+    display: flex;
+    justify-content: center;
+    flex: 1 0 auto;
+}
+
+.my-card-body-camera {
+    padding: 0 !important;
+}
+
+.my-inner-card-body {
+    justify-content: left;
+}
+
+
+.my-card-footer {
+    height: 36px;
+    padding: 0px 4px !important;
+    line-height: 36px;
+}
+
+.my-card-footer-thick {
+    display: flex;
+    padding: 0px 4px !important;
+    line-height: 36px;
+    height: 72px;
+    align-self: center;
+}
+
+.header-image-container {
+    max-height: 36px;
+    margin: 0 auto;
+}
+
+.header-image-container img {
+    width: auto;
+    height: 36px;
+}
+
+.step {
+    display: none;
+}
+
+.divVideoCanvas
+{
+    background-color: var(--color-gray-light);
+}
+
+.cameraCanvas {
+    object-fit: cover;
+    background-color: var(--color-gray-light);
+    width: 100%;
+    height: auto;
+}
+
+.maskCanvas {
+    object-fit: cover;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+}
+
+.icon-btn {
+    background-color:transparent;
+    color: var(--color-gray-light);
+    padding: 6px;
+}
+
+.my-label,
+.my-radio-label {
+    font-size: var(--font-size-label);
+    font-weight: var(--font-size-label-weight);
+    line-height: var( --font-size-label-line-height);
+}
+
+.my-radio-label {
+    padding-right: 1rem;
+}
+
+.my-label-large {
+    font-size: var(--font-size-large);
+    font-weight: var(--font-size-large-weight);
+    line-height: var( --font-size-large-line-height);
+}
+
+.my-label-data {
+    font-size: var(--font-size-label-data);
+    font-weight: var(--font-size-label-data-weight);
+    line-height: var( --font-size-label-data-line-height);
+}
+
+.divProductImage {
+    flex: none;
+    height:25%;
+    max-height: 25%;
+}
+.productImage {
+    max-width: 50%;
+    max-height: 25vh;
+}
+
+/* .divConfirmData {
+    height: auto;
+} */
+
+.divBtn-Center {
+    text-align: center;
+}
+
+.mySwitch {
+    height : var( --font-size-label-data-line-height);
+}
+
+.my-form-check-input:checked
+{
+    background-color: var(--color-blue) !important;
+}

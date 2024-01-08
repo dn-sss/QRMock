@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- https://designmodo.com/bootstrap-5-form/ -->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>QRCode Scanner Prototype</title>
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="./js/script.js"></script>
+    <script type="text/javascript" src="./js/jsQR.js"></script>
+
+    <div class="container align-items-center min-vh-100 flex-container p-0"
+        style="height: 100%; overflow: auto;flex-direction: column;">
+        <div class="row d-flex g-0 justify-content-center flex-container" style="flex-grow: 1;">
+            <form id="qrcodeform-wrapper" class="flex-container" style="flex-grow: 1;">
+                <div class="step flex-container" style="flex-grow: 1;">
+                    <div class="card my-card flex-container">
+                        <div class="card-header my-card-header">
+                            <div class="header-image-container">
+                                <img src="./image/sony-logo-white.svg" class="card-title-logo" alt="Sony">
+                            </div>
+                        </div>
+                        <div class="card-body my-card-body">
+                            <div class="text-center m-auto">
+                                <img src="./image/aitrios-logo-black-vertical.svg" class="aitrios-logo">
+                                <div class="m-5"></div>
+                                <h1>
+                                    Register New Devices
+                                </h1>
+                                <div class="m-5"></div>
+                                <div class="my-label-large">
+                                    Scan QR Code to register your devices to AITRIOS project
+                                </div>
+                                <div class="m-3"></div>
+                                <button id="btnOpenCamera" type="button" class="btn-aitrios">Next</button>
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+                        <div class="card-footer my-card-footer">
+                            ©︎ 2023 Sony Semiconductor Solutions Corporation
+                        </div>
+                    </div>
+                </div>
+                <div class="step flex-container" style="flex-grow: 1;">
+                    <div class="card my-card flex-container">
+                        <div class="card-body my-card-body-camera">
+                            <div class="divVideoCanvas" style="position: relative;display: flex; flex: 1 1 auto;">
+                                <canvas id="canvasVideo" class="cameraCanvas" style="z-index: 1;"></canvas>
+                                <canvas id="canvasMask" class="maskCanvas" style="z-index: 2;position:absolute; top:0; left:0"></canvas>
+                                <button id="btnCloseCamera" class="border-0 icon-btn" type="button"
+                                    style="z-index: 10;position:absolute; top:0; left:0">
+                                    <img src="./image/icon-close.svg">
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-footer my-card-footer-thick">
+                            <div class="text-center m-auto">
+                                <h5>
+                                    Scan QR Code on the device
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="step flex-container" style="flex-grow: 1;">
+                    <div class="card my-card flex-container">
+                        <div class="card-header my-card-header">
+                            <div class="header-image-container">
+                                <img src="./image/sony-logo-white.svg" class="card-title-logo" alt="Sony">
+                            </div>
+                        </div>
+                        <div class="card-body my-card-body flex-container">
+                            <div class="divProductImage">
+                                <img src="./image/t3w.png" class="productImage">
+                            </div>
+                            <div class="divConfirmData" style="flex-grow: 1">
+                                <div class="mb-2">
+                                    <label for="divDeviceType" class="my-label">Device Type:</label>
+                                    <div class="my-label-data" id="divDeviceType">SZ-123S-001</div>
+                                </div>
+                    
+                                <div class="mb-2">
+                                    <label for="divDeviceId" class="my-label">Device ID:</label>
+                                    <div class="my-label-data" id="divDeviceId">123</div>
+                                </div>
+                    
+                                <div class="mb-2">
+                                    <label for="listProject" class="my-label">Project:</label>
+                                    <select class="form-select my-label-data is-invalid" id="listProject" required>
+                                        <option value="">--Please choose project to assign this device to--</option>
+                                        <option value="1">Project 1</option>
+                                        <option value="2">Project 2</option>
+                                        <option value="3">Project 3</option>
+                                    </select>
+                                    <div class="invalid-feedback">Please select project for this device.</div>
+                                </div>
+                    
+                                <div class="mb-2">
+                                    <label for="inputDeviceGroup" class="my-label">Device Group:</label>
+                                    <input type="text" class="form-control my-label-data" id="inputDeviceGroup"
+                                        placeholder="Will be assigned to Default unless specified" />
+                                </div>
+
+                                <div class="mb-2">
+                                    <div class="form-check form-switch">
+                                        <label class="form-check-label my-label" for="switchNetworkSettings">Configure Network Settings</label>
+                                        <input class="form-check-input my-form-check-input mySwitch" type="checkbox" role="switch" id="switchNetworkSettings">
+                                    </div>
+                                </div>
+
+                                <div class="mb-2" id="divNetworkSettings" style="display: none;">
+                                    <div>
+                                        <label for="cardIpv4" class="my-label">IPv4 Settings</label>
+                                        <div class="card my-card" id="cardIpv4">
+                                            <div class="card-body my-inner-card-body" id="cardNetworkSetting">
+                                                <div class="btn-group-toggle" id="networkTypeToggle">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input my-form-check-input" type="radio" name="networkTypeRadio" id="networkTypeDhcp" value='dhcp' checked>
+                                                        <label class="form-check-label my-label" for="networkTypeDhcp">
+                                                            DHCP
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input my-form-check-input" type="radio" name="networkTypeRadio" id="networkTypeStatic" value='static'>
+                                                        <label class="form-check-label my-label" for="networkTypeStatic">
+                                                            Static
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-2" id="divStaticIp" style="display: none;">
+
+                                                    <div  class="row">
+                                                        <label for="inputIpAddress" class="col-sm-2 col-form-label my-label">IPv4 Address</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" class="form-control my-label-data" id="inputIpAddress" />
+                                                        </div>
+                                                    </div>
+                                                    <div  class="row">
+                                                        <label for="inputSubnetMask" class="col-sm-2 col-form-label my-label">Proxy URL</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" class="form-control my-label-data" id="inputSubnetMask" />
+                                                        </div>
+                                                    </div>
+                                                    <div  class="row">
+                                                        <label for="inputGateway" class="col-sm-2 col-form-label my-label">Default Gatewa</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" class="form-control my-label-data" id="inputGateway" />
+                                                        </div>
+                                                    </div>
+                                                    <div  class="row">
+                                                        <label for="inputDnsServer" class="col-sm-2 col-form-label my-label">DNS Server</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" class="form-control my-label-data" id="inputDnsServer" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label for="cardProxy" class="my-label">Proxy Settings</label>
+                                        <div class="card my-card" id="cardProxy">
+                                            <div class="card-body my-inner-card-body" id="cardNetworkSetting">
+                                                <div class="row">
+                                                    <label for="inputProxyUrl" class="col-sm-2 col-form-label my-label">Proxy URL</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control my-label-data" id="inputProxyUrl" />
+                                                    </div>
+                                                </div>
+                                    
+                                                <div class="row">
+                                                    <label for="inputProxyPort" class="col-sm-2 col-form-label my-label">Proxy Port</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control my-label-data" id="inputProxyPort" />
+                                                    </div>
+                                                </div>
+                                    
+                                                <div class="row">
+                                                    <label for="inputProxyUserName" class="col-sm-2 col-form-label my-label">Proxy User Name</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control my-label-data" id="inputProxyUserName" />
+                                                    </div>
+                                                </div>
+                                    
+                                                <div class="row">
+                                                    <label for="inputProxyPassword" class="col-sm-2 col-form-label my-label">Proxy Password</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="password" class="form-control my-label-data" id="inputProxyPassword" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label for="cardNtp" class="my-label">Netowrk Time Server</label>
+                                        <div class="card my-card" id="cardNtp">
+                                            <div class="card-body my-inner-card-body" id="cardNetworkSetting">
+                                                <div class="row">
+                                                    <label for="inputNtp" class="col-sm-2 col-form-label my-label">NTP</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="password" class="form-control my-label-data" id="inputNtp" placeholder="Time Server URL or Ip Address" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label for="cardWiFi" class="my-label">WiFi SSID</label>
+                                        <div class="card my-card" id="cardWifi">
+                                            <div class="card-body my-inner-card-body" id="cardWiFi">
+                                                <div class="mb-2">
+
+                                                    <div class="row">
+                                                        <label for="inputSSID" class="col-sm-2 col-form-label my-label">SSID</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="password" class="form-control my-label-data" id="inputSSID" placeholder="Wi-Fi SSID" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <label for="inputWiFiPassword" class="col-sm-2 col-form-label my-label">Password</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="password" class="form-control my-label-data" id="inputWiFiPassword" placeholder="Wi-Fi Password" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="mb-2 divBtn-Center">
+                                <button id="btnCancelRegisterDevice" type="button" class="btn-aitrios">Cancel</button>
+                                <button id="btnRegisterDevice" type="button" class="btn-aitrios">Register</button>
+                            </div>
+                    </div>
+                    </div>
+                    <div class="card-footer my-card-footer">
+                        ©︎ 2023 Sony Semiconductor Solutions Corporation
+                    </div>
+                </div>
+
+                <div class="step flex-container" style="flex-grow: 1;">
+                    <div class="card my-card flex-container">
+                        <div class="card-header my-card-header">
+                            <div class="header-image-container">
+                                <img src="./image/sony-logo-white.svg" class="card-title-logo" alt="Sony">
+                            </div>
+                        </div>
+                        <div class="card-body my-card-body flex-container">
+                            <div class="text-center m-auto flex-grow: 1">
+                                <h1>
+                                    Registration Completed!
+                                </h1>
+                                <div class="m-1"></div>
+                                <h5>
+                                    Scan QR Code to register your devices to AITRIOS project
+                                </h5>
+                                <div class="m-1"></div>
+
+                            </div>
+                            <div class="mb-2 divBtn-Center">
+                                <button id="btnRegisterMoreDevice" type="button" class="btn-aitrios">Register
+                                    More</button>
+                                <button id="btnWhiteList" type="button" class="btn-aitrios">Check List</button>
+                            </div>
+                        </div>
+                        <div class="card-footer my-card-footer">
+                            ©︎ 2023 Sony Semiconductor Solutions Corporation
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3 ">
+                <div id="toastDeviceIdConfirm" class="toast bg-black" role="alert" aria-live="assertive"
+                    aria-atomic="true" data-bs-autohide="false">
+                    <div class="toast-header bg-black text-white">
+                        <strong class="me-auto">Register this device</strong>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        <div id="divToastDeviceId"></div>
+                        <div class="divBtn-Center">
+                            <button id="btnConfirmRegisterDevice" type="button" class="btn-aitrios-sm">Register</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
