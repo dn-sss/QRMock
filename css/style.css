@@ -15,7 +15,7 @@
     --aitrios-font: 'SST Japanese Pro';
 }
 
-@media screen and (min-width: 375px) {
+@media screen and (min-width: 346px) {
     :root {
         --font-size: 16px;
         --font-size-icon: 1.2rem;
