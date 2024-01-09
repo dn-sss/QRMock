@@ -28,9 +28,7 @@ let toastDeviceIdConfirm = null;
 const isHover  = window.matchMedia("(any-hover:hover)").matches;
 
 document.addEventListener("DOMContentLoaded", function () {
-    const divTest = document.getElementsByClassName("divTest");
 
-    divTest.innnerText = `w ${window.innnerWidth} h ${window.innnerHeight}`
     step = document.getElementsByClassName("step");
     prevBtn = document.getElementById("prev-btn");
     nextBtn = document.getElementById("next-btn");
@@ -89,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
         toastDeviceIdConfirmElement.addEventListener("hide.bs.toast", () => {
             pendingUserConfirm = false;
             detectedQRCode = "";
-            divToastDeviceId.innerText = "";
+            divToastDeviceId.innerHTML = "";
         });
 
         toastDeviceIdConfirmElement.addEventListener("show.bs.toast", () => {
@@ -170,6 +168,9 @@ document.addEventListener("DOMContentLoaded", function () {
     
     }
 
+    let divTest = document.getElementById("divTest");
+    let test = `w ${window.innerWidth} h ${window.innerHeight}`;
+    divTest.innerHTML = test;
     stepConfig(0, -1);
 });
 
@@ -190,8 +191,7 @@ function clickBtnConfirmRegisterDevice(event)
     console.log(`clickBtnConfirmRegisterDevice`);
     if (toastDeviceIdConfirm.isShown())
     {
-        divDeviceId.innerText = divToastDeviceId.innerHtml;
-        divDeviceId.innerHtml = divToastDeviceId.innerHtml;
+        divDeviceId.innerHTML = divToastDeviceId.innerHTML;
         toastDeviceIdConfirm.hide();
     }
     stepConfig(2, 1);
@@ -357,8 +357,7 @@ function checkDetectedCode(data) {
 
     if (pendingUserConfirm == false) {
 
-        divToastDeviceId.innerText = detectedQRCode;
-        divToastDeviceId.innerHtml = detectedQRCode;
+        divToastDeviceId.innerHTML = detectedQRCode;
         toastDeviceIdConfirm.show();
     }
     else{
