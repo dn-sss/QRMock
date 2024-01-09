@@ -18,7 +18,7 @@
 
 @media screen and (min-width: 346px) {
     :root {
-        --font-small: 12px;
+        --font-size-small: 12px;
         --font-size: 14px;
         --font-size-icon: 1.2rem;
 
@@ -41,7 +41,7 @@
 
 @media screen and (min-width: 600px) {
     :root {
-        --font-small: 12px;
+        --font-size-small: 12px;
         --font-size: 14px;
         --font-size-icon: 1.2rem;
 
@@ -64,7 +64,7 @@
 
 @media screen and (min-width: 800px) {
     :root {
-        --font-small: 12px;
+        --font-size-small: 12px;
         --font-size: 14px;
         --font-size-icon: 1.2rem;
         --font-size-large: 24px;
@@ -86,7 +86,7 @@
 
 @media screen and (min-width: 1281px) {
     :root {
-        --font-small: 16px;
+        --font-size-small: 16px;
         --font-size: 18px;
         --font-size-icon: 1.2rem;
         --font-size-large: 30px;
@@ -231,7 +231,7 @@ body {
     height: 36px;
     padding: 0px 4px !important;
     line-height: 36px;
-    font-size: var(--font-small);
+    font-size: var(--font-size-small);
 }
 
 .my-card-footer-thick {
@@ -351,4 +351,9 @@ body {
     background-color: transparent;
     width:1rem;
     border: none;
+}
+
+.my-form-select option {
+    font-size: var(--font-size-label-data) !important;
+    max-width: 100%;
 }
