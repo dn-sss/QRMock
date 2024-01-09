@@ -21,7 +21,7 @@ let divToastDeviceId = null;
 let divDeviceId = null;
 let divNetworkSettings = null;
 
-const lineColor = "#FF3B58";
+const lineColor = "#13fd17";
 
 let toastDeviceIdConfirm = null;
 
