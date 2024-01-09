@@ -128,7 +128,7 @@ body {
     border-color: var(--color-blue) !important;
     font-family: var(--aitrios-font) !important;
     mix-blend-mode: normal !important;
-    max-width: 40vw;
+    max-width: 30vw;
     /* box-shadow: 0px 0px 2px 2px var(--color-blue); */
 }
 
