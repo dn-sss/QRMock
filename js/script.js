@@ -168,9 +168,6 @@ document.addEventListener("DOMContentLoaded", function () {
     
     }
 
-    let divTest = document.getElementById("divTest");
-    let test = `w ${window.innerWidth} h ${window.innerHeight}`;
-    divTest.innerHTML = test;
     stepConfig(0, -1);
 });
 
