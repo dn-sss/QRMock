@@ -140,7 +140,7 @@ body {
     line-height: 160% !important;
     font-size: var(--font-size) !important;
     padding: 8px 16px !important;
-    min-width: 10rem;
+    min-width: 8rem;
 }
 
 .btn-aitrios-sm {
