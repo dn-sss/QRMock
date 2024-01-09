@@ -13,14 +13,16 @@
     /* --color-gray-dark: #3E445B; */
     --color-white: #FFFFFF;
     --aitrios-font: 'SST Japanese Pro';
+    --font-color:#ffffff !important;
 }
 
 @media screen and (min-width: 346px) {
     :root {
-        --font-size: 16px;
+        --font-small: 12px;
+        --font-size: 14px;
         --font-size-icon: 1.2rem;
 
-        --font-size-large: 18px;
+        --font-size-large: 24px;
         --font-size-large-weight: 700;
         --font-size-large-line-height: 26px;
 
@@ -30,18 +32,20 @@
         --font-size-label-weight: 700;
         --font-size-label-line-height: 24px;
 
-        --font-size-label-data: 14px;
+        --font-size-label-data: 16x;
         --font-size-label-data-weight: 400;
-        --font-size-label-data-line-height: 22px;
+        --font-size-label-data-line-height: 18px;
+        --logo-width : 20vh;
     }
 }
 
 @media screen and (min-width: 600px) {
     :root {
-        --font-size: 18px;
+        --font-small: 12px;
+        --font-size: 14px;
         --font-size-icon: 1.2rem;
 
-        --font-size-large: 20px;
+        --font-size-large: 24px;
         --font-size-large-weight: 700;
         --font-size-large-line-height: 32px;
 
@@ -51,49 +55,54 @@
         --font-size-label-weight: 700;
         --font-size-label-line-height: 25.6px;
 
-        --font-size-label-data: 14px;
+        --font-size-label-data: 16px;
         --font-size-label-data-weight: 400;
-        --font-size-label-data-line-height: 22.4px;
+        --font-size-label-data-line-height: 18px;
+        --logo-width : 25vh;
     }
 }
 
 @media screen and (min-width: 800px) {
     :root {
-        --font-size: 18px;
+        --font-small: 12px;
+        --font-size: 14px;
         --font-size-icon: 1.2rem;
-        --font-size-large: 20px;
+        --font-size-large: 24px;
         --font-size-large-weight: 700;
         --font-size-large-line-height: 32px;
 
         --font-size-title: 1.5rem;
 
-        --font-size-label: 16px;
+        --font-size-label: 14px;
         --font-size-label-weight: 700;
         --font-size-label-line-height: 25.6px;
 
-        --font-size-label-data: 14px;
+        --font-size-label-data: 16px;
         --font-size-label-data-weight: 400;
-        --font-size-label-data-line-height: 22.4px;
+        --font-size-label-data-line-height: 18px;
+        --logo-width : 25vh;
     }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1281px) {
     :root {
+        --font-small: 16px;
         --font-size: 18px;
         --font-size-icon: 1.2rem;
-        --font-size-large: 20px;
+        --font-size-large: 30px;
         --font-size-large-weight: 700;
         --font-size-large-line-height: 32px;
 
         --font-size-title: 1.5rem;
 
-        --font-size-label: 16px;
+        --font-size-label: 18px;
         --font-size-label-weight: 700;
         --font-size-label-line-height: 25.6px;
 
-        --font-size-label-data: 14px;
+        --font-size-label-data: 18px;
         --font-size-label-data-weight: 400;
-        --font-size-label-data-line-height: 22.4px;
+        --font-size-label-data-line-height: 20px;
+        --logo-width : 28vh;
     }
 }
 
@@ -107,12 +116,18 @@ html {
 body {
     background: #000000;
     font-family: 'SST', sans-serif;
-    color: #ffffff !important;
+    color: var(--font-color);
+}
+
+.testH1 {
+    color: var(--font-color);
 }
 
 .aitrios-logo {
-    width :40%;
-    max-width : 40%;
+    height : var(--logo-width);
+    max-height : var(--logo-width);
+    /* width : var(--logo-width);
+    max-width : var(--logo-width); */
 }
 
 .btn-aitrios,
@@ -192,6 +207,8 @@ body {
 .my-card-header {
     height: 36px;
     padding: 0;
+    line-height: 36px;
+    display: flex;
 }
 
 .my-card-body,
@@ -214,6 +231,7 @@ body {
     height: 36px;
     padding: 0px 4px !important;
     line-height: 36px;
+    font-size: var(--font-small);
 }
 
 .my-card-footer-thick {
@@ -226,7 +244,7 @@ body {
 
 .header-image-container {
     max-height: 36px;
-    margin: 0 auto;
+    margin: 0 auto 0 0;
 }
 
 .header-image-container img {
@@ -324,3 +342,13 @@ body {
   ::-ms-input-placeholder {
     color: var(--color-gray-light) !important;
   }
+
+.my-toast {
+    min-width: 40vw;
+}
+
+.my-hidden-btn {
+    background-color: transparent;
+    width:1rem;
+    border: none;
+}

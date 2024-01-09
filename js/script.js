@@ -220,6 +220,12 @@ function clickBtnWhiteList(event)
     alert('This button will show Whitelist Page');
 }
 
+function showGeometry()
+{
+    console.log(`clickBtnWhilteList`);
+    alert(`${window.innerWidth} x ${window.innerHeight} \r\n ${navigator.userAgent}`);
+}
+
 function stepConfig(step_new, step_prev) {
     console.log(`Current ${step_new} Previous ${step_prev}`);
 

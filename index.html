@@ -33,16 +33,19 @@
                             <div class="header-image-container">
                                 <img src="./image/sony-logo-white.svg" class="card-title-logo" alt="Sony">
                             </div>
+                            <div>
+                                <button id="btnHiddenPageInfo" type="button" class="my-hidden-btn" onclick="showGeometry()">&nbsp;</button>
+                            </div>
                         </div>
                         <div class="card-body my-card-body">
                             <div class="text-center m-auto">
                                 <img src="./image/aitrios-logo-black-vertical.svg" class="aitrios-logo">
-                                <div class="m-5"></div>
-                                <h1>
-                                    Register New Devices
-                                </h1>
-                                <div class="m-5"></div>
+                                <div class="m-3"></div>
                                 <div class="my-label-large">
+                                    Register New Devices
+                                </div>
+                                <div class="m-3"></div>
+                                <div class="my-label">
                                     Scan QR Code to register your devices to AITRIOS project
                                 </div>
                                 <div class="m-3"></div>
@@ -283,9 +286,9 @@
                                 <h1>
                                     Registration Completed!
                                 </h1>
-                                <div class="m-1"></div>
+                                <div class="m-3"></div>
                                 <h5>
-                                    Scan QR Code to register your devices to AITRIOS project
+                                    Scan QR Code to register more devices or check registered device(s)
                                 </h5>
                                 <div class="m-1"></div>
 
@@ -302,16 +305,16 @@
                 </div>
             </form>
 
-            <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3 ">
-                <div id="toastDeviceIdConfirm" class="toast bg-black" role="alert" aria-live="assertive"
+            <div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">
+                <div id="toastDeviceIdConfirm" class="toast bg-black text-primary my-toast" role="alert" aria-live="assertive"
                     aria-atomic="true" data-bs-autohide="false">
-                    <div class="toast-header bg-black text-white">
+                    <div class="toast-header bg-black text-primary">
                         <strong class="me-auto my-label-large">Register this device</strong>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"
                             aria-label="Close"></button>
                     </div>
                     <div class="toast-body">
-                        <div class="my-label-data-large" id="divToastDeviceId"></div>
+                        <div class="my-label-data" id="divToastDeviceId"></div>
                         <div class="divBtn-Center mt-5">
                             <button id="btnConfirmRegisterDevice" type="button" class="btn-aitrios" width="100%">Register</button>
                         </div>
