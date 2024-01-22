@@ -17,9 +17,13 @@ let stepCount = 4;
 let detectedQRCode = "";
 let pendingUserConfirm = false;
 
+let divVideoCanvas = null;
 let divToastDeviceId = null;
 let divDeviceId = null;
 let divNetworkSettings = null;
+
+let maskRatio = 1;
+let maskSize = 0;
 
 const lineColor = "#13fd17";
 
@@ -97,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     divToastDeviceId = document.getElementById("divToastDeviceId");
     divDeviceId = document.getElementById("divDeviceId");
-
+    divVideoCanvas = document.getElementById("divVideoCanvas");
 
     var listProject = document.getElementById("listProject");
 
@@ -259,8 +263,34 @@ function stepConfig(step_new, step_prev) {
             .then(() => {
                 canvasVideo.height = elementVideo.videoHeight;
                 canvasVideo.width = elementVideo.videoWidth;
-                canvasMask.height = elementVideo.videoHeight;
-                canvasMask.width = elementVideo.videoWidth;
+
+                var canvasWidth = divVideoCanvas.clientWidth;
+                var canvasHeight = divVideoCanvas.clientHeight;
+
+                canvasMask.height = canvasHeight
+                canvasMask.width = canvasWidth
+
+                // calculate a square with 1/3 of hight or width (whichever smaller)
+                const ctx = canvasMask.getContext("2d");
+
+                var sqMax = (Math.min(canvasHeight, canvasWidth)) * (3/5) ;
+                sqMax = Math.max(300, sqMax);
+                var x = (canvasWidth / 2) - (sqMax / 2);
+                var y = (canvasHeight / 2)  - (sqMax /2);
+                
+                ctx.fillStyle = 'rgba(201, 201, 201, 0.7)';
+                ctx.fillRect(0,0, canvasWidth, canvasHeight);
+                // ctx.save();
+                // ctx.fillStyle = 'rgba(0, 255, 0, 0.5)';
+                // ctx.beginPath();
+                // ctx.roundRect(ctx, x, y, sqMax, sqMax, 5, false, true);
+                //ctx.clip();
+                ctx.clearRect(x, y, sqMax, sqMax);
+                ctx.restore();
+
+                maskSize = sqMax;
+                maskRatio = canvasHeight /  elementVideo.videoHeight;
+
                 requestAnimationFrame(drawVideoStream);
             })
             .catch((error) => {
@@ -291,32 +321,41 @@ function cameraClose() {
     detectedQRCode = "";
 }
 
-function drawLine(ctx, begin, end, color) {
+function drawLine(ctx, begin, end, color, offsetX, offsetY) {
     ctx.beginPath();
-    ctx.moveTo(begin.x, begin.y);
-    ctx.lineTo(end.x, end.y);
+    ctx.moveTo(begin.x + offsetX, begin.y + offsetY);
+    ctx.lineTo(end.x + offsetX, end.y + offsetY);
     ctx.lineWidth = 4;
     ctx.strokeStyle = color;
     ctx.stroke();
 }
 
-function drawBBox(ctx, location) {
+function drawBBox(ctx, location, offsetX, offsetY) {
     if (location != null) {
-        drawLine(ctx, location.topLeftCorner, location.topRightCorner, lineColor);
-        drawLine(ctx, location.topRightCorner, location.bottomRightCorner, lineColor);
-        drawLine(ctx, location.bottomRightCorner, location.bottomLeftCorner, lineColor);
-        drawLine(ctx, location.bottomLeftCorner, location.topLeftCorner, lineColor);
+        drawLine(ctx, location.topLeftCorner, location.topRightCorner, lineColor, offsetX, offsetY);
+        drawLine(ctx, location.topRightCorner, location.bottomRightCorner, lineColor, offsetX, offsetY);
+        drawLine(ctx, location.bottomRightCorner, location.bottomLeftCorner, lineColor, offsetX, offsetY);
+        drawLine(ctx, location.bottomLeftCorner, location.topLeftCorner, lineColor, offsetX, offsetY);
     }
 }
 
 function scanCode(ctx, canvas) {
     var startTime = new Date();
-    var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+    var x = (elementVideo.videoWidth - (maskSize / maskRatio)) / 2;
+    var y = (elementVideo.videoHeight - (maskSize / maskRatio)) / 2;
+    var h = maskSize / maskRatio;
+    var w = h;
+
+//    var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+    var imageData = ctx.getImageData(x, y, w, h);
     var code = jsQR(imageData.data, imageData.width, imageData.height, {
         inversionAttempts: "dontInvert",
     });
+
     if (code && code.data.length > 0) {
-        drawBBox(ctx, code.location);
+        drawBBox(ctx, code.location, x, y);
         checkDetectedCode(code.data);
         var endTime = new Date();
         var timeDiff = (endTime - startTime) / 1000;
